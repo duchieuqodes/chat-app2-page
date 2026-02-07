@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Chút Chill - Lời mời tham gia nhóm</title>
+  <meta name="description" content="Bạn được mời tham gia nhóm trên Chút Chill" />
+  <meta property="og:title" content="Chút Chill - Lời mời nhóm" />
+  <meta property="og:description" content="Bấm để tham gia nhóm trên app Chút Chill" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #E8F4FF 0%, #B8DFFF 40%, #A8D4FF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    /* Mây trang trí */
+    .cloud {
+      position: fixed;
+      background: rgba(255,255,255,0.35);
+      border-radius: 100px;
+      filter: blur(1px);
+    }
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud-1 { width: 140px; height: 46px; top: 8%; left: -20px; animation: floatCloud 18s ease-in-out infinite; }
+    .cloud-1::before { width: 60px; height: 60px; top: -28px; left: 22px; }
+    .cloud-1::after { width: 45px; height: 45px; top: -18px; right: 20px; }
+    .cloud-2 { width: 110px; height: 36px; top: 15%; right: -10px; animation: floatCloud 22s ease-in-out infinite reverse; }
+    .cloud-2::before { width: 50px; height: 50px; top: -24px; left: 16px; }
+    .cloud-2::after { width: 38px; height: 38px; top: -14px; right: 14px; }
+    .cloud-3 { width: 100px; height: 32px; bottom: 12%; left: 10%; animation: floatCloud 20s ease-in-out infinite; opacity: 0.5; }
+    .cloud-3::before { width: 44px; height: 44px; top: -20px; left: 14px; }
+    .cloud-3::after { width: 34px; height: 34px; top: -12px; right: 12px; }
+
+    @keyframes floatCloud {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(30px); }
+    }
+
+    /* Container chính */
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255,255,255,0.9);
+      border-radius: 28px;
+      padding: 36px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(100,160,200,0.15);
+      animation: cardIn 0.6s ease-out;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      color: #7ABFD4;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    .logo-sub {
+      font-size: 12px;
+      color: #A0A0C0;
+      margin-bottom: 24px;
+    }
+
+    /* Avatar nhóm */
+    .group-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #CFE9FF, #A8D4FF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 4px 14px rgba(122,191,212,0.3);
+      font-size: 36px;
+    }
+    .group-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .group-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: #4A4A6A;
+      margin-bottom: 6px;
+    }
+    .group-members {
+      font-size: 14px;
+      color: #7A7A9A;
+      margin-bottom: 6px;
+    }
+    .group-desc {
+      font-size: 13px;
+      color: #A0A0C0;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .invite-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(122,191,212,0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #7ABFD4;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    /* Nút mở app */
+    .btn-open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 15px 24px;
+      background: linear-gradient(135deg, #7ABFD4, #5AACCC);
+      color: #FFF;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(122,191,212,0.4);
+      text-decoration: none;
+    }
+    .btn-open:active { transform: scale(0.97); }
+
+    .btn-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 24px;
+      background: rgba(74,74,106,0.08);
+      color: #4A4A6A;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      margin-top: 12px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-download:hover { background: rgba(74,74,106,0.14); }
+
+    .status-text {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #A0A0C0;
+    }
+
+    /* Loading */
+    .loading {
+      padding: 40px 0;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(122,191,212,0.2);
+      border-top-color: #7ABFD4;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error */
+    .error-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .error-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FF4757;
+      margin-bottom: 6px;
+    }
+    .error-sub {
+      font-size: 13px;
+      color: #7A7A9A;
+      margin-bottom: 20px;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <!-- Mây trang trí -->
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+
+  <div class="card">
+    <div class="logo-text">Chút Chill</div>
+    <div class="logo-sub">Kết nối bạn bè, chia sẻ khoảnh khắc ☁️</div>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <div style="font-size:14px; color:#7A7A9A;">Đang tải thông tin nhóm...</div>
+    </div>
+
+    <!-- Group Preview (hidden by default) -->
+    <div id="preview" class="hidden">
+      <div class="group-avatar" id="avatar-container">👥</div>
+      <div class="group-name" id="group-name"></div>
+      <div class="group-members" id="group-members"></div>
+      <div class="group-desc" id="group-desc"></div>
+      <div class="invite-badge">✉️ Bạn được mời tham gia nhóm này</div>
+      <a href="#" id="btn-open" class="btn-open" onclick="openApp()">
+        📱 Mở trong ứng dụng
+      </a>
+      <a
+        href="https://github.com/duchieuqodes/Bansungrank/releases/download/app-chat2/chutchill.apk"
+        class="btn-download"
+        id="btn-download"
+      >
+        ⬇️ Tải app Chút Chill
+      </a>
+      <div class="status-text" id="status-text"></div>
+    </div>
+
+    <!-- Error State (hidden by default) -->
+    <div id="error" class="hidden">
+      <div class="error-icon">🔗</div>
+      <div class="error-title" id="error-title">Link không hợp lệ</div>
+      <div class="error-sub" id="error-sub">Link mời này đã hết hạn hoặc bị thu hồi.</div>
+      <a
+        href="https://github.com/duchieuqodes/Bansungrank/releases/download/app-chat2/chutchill.apk"
+        class="btn-download"
+      >
+        ⬇️ Tải app Chút Chill
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIG — THAY ĐỔI THEO DỰ ÁN
+    // ============================================
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';  // ← Thay bằng URL thật
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // ← Thay bằng key thật
+    const APP_SCHEME = 'chutchill';
+    const APK_URL = 'https://github.com/duchieuqodes/Bansungrank/releases/download/app-chat2/chutchill.apk';
+
+    // ============================================
+    // LẤY INVITE CODE TỪ URL
+    // ============================================
+    function getInviteCode() {
+      const parts = window.location.pathname.split('/');
+      const idx = parts.indexOf('invite');
+      return idx >= 0 && parts[idx + 1] ? parts[idx + 1] : null;
+    }
+
+    // ============================================
+    // FETCH THÔNG TIN NHÓM TỪ SUPABASE
+    // ============================================
+    async function fetchGroupInfo(inviteCode) {
+      try {
+        // 1. Lấy link info
+        const linkRes = await fetch(
+          `${SUPABASE_URL}/rest/v1/group_invite_links?invite_code=eq.${inviteCode}&is_active=eq.true&select=*&limit=1`,
+          { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
+        );
+        const links = await linkRes.json();
+        if (!links || links.length === 0) return null;
+        const link = links[0];
+
+        // Kiểm tra hết hạn
+        if (link.expires_at && new Date(link.expires_at) < new Date()) return null;
+        // Kiểm tra max uses
+        if (link.max_uses && link.used_count >= link.max_uses) return null;
+
+        // 2. Lấy group info
+        const groupRes = await fetch(
+          `${SUPABASE_URL}/rest/v1/groups?id=eq.${link.group_id}&select=id,name,avatar_url,description&limit=1`,
+          { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
+        );
+        const groups = await groupRes.json();
+        if (!groups || groups.length === 0) return null;
+        const group = groups[0];
+
+        // 3. Đếm thành viên
+        const countRes = await fetch(
+          `${SUPABASE_URL}/rest/v1/group_members?group_id=eq.${link.group_id}&status=eq.active&select=id`,
+          { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`, Prefer: 'count=exact' } }
+        );
+        const countHeader = countRes.headers.get('content-range');
+        const memberCount = countHeader ? parseInt(countHeader.split('/')[1]) || 0 : 0;
+
+        return {
+          name: group.name,
+          avatar_url: group.avatar_url,
+          description: group.description,
+          members_count: memberCount,
+        };
+      } catch (err) {
+        console.error('Fetch error:', err);
+        return null;
+      }
+    }
+
+    // ============================================
+    // MỞ APP
+    // ============================================
+    function openApp() {
+      const code = getInviteCode();
+      if (!code) return;
+
+      const deepLink = `${APP_SCHEME}://invite/${code}`;
+      const statusEl = document.getElementById('status-text');
+
+      // Thử mở deep link
+      statusEl.textContent = 'Đang mở ứng dụng...';
+
+      // Dùng intent cho Android
+      const isAndroid = /android/i.test(navigator.userAgent);
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+      if (isAndroid) {
+        // Thử deep link trước, fallback tải APK
+        window.location.href = deepLink;
+        setTimeout(() => {
+          statusEl.textContent = 'Không tìm thấy app? Hãy tải app bên dưới.';
+        }, 2500);
+      } else if (isIOS) {
+        window.location.href = deepLink;
+        setTimeout(() => {
+          statusEl.textContent = 'Nếu app không mở, hãy tải app.';
+        }, 2500);
+      } else {
+        // Desktop: hiện hướng dẫn
+        statusEl.textContent = 'Vui lòng mở link này trên điện thoại để sử dụng app.';
+      }
+    }
+
+    // ============================================
+    // INIT
+    // ============================================
+    async function init() {
+      const code = getInviteCode();
+      const loadingEl = document.getElementById('loading');
+      const previewEl = document.getElementById('preview');
+      const errorEl = document.getElementById('error');
+
+      if (!code) {
+        loadingEl.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        document.getElementById('error-title').textContent = 'Link không hợp lệ';
+        document.getElementById('error-sub').textContent = 'Đường dẫn này không chứa mã mời hợp lệ.';
+        return;
+      }
+
+      const info = await fetchGroupInfo(code);
+
+      loadingEl.classList.add('hidden');
+
+      if (!info) {
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      // Hiển thị preview
+      document.getElementById('group-name').textContent = info.name;
+      document.getElementById('group-members').textContent = `👥 ${info.members_count} thành viên`;
+
+      if (info.description) {
+        document.getElementById('group-desc').textContent = info.description;
+      } else {
+        document.getElementById('group-desc').style.display = 'none';
+      }
+
+      if (info.avatar_url && info.avatar_url.startsWith('http')) {
+        document.getElementById('avatar-container').innerHTML =
+          `<img src="${info.avatar_url}" alt="${info.name}" onerror="this.parentElement.textContent='👥'" />`;
+      }
+
+      previewEl.classList.remove('hidden');
+
+      // Auto-try mở app trên mobile
+      const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+      if (isMobile) {
+        setTimeout(() => openApp(), 800);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
