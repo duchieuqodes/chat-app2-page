@@ -13,15 +13,35 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Nunito', sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(160deg, #E8F4FF 0%, #B8DFFF 40%, #A8D4FF 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      overflow: hidden;
-    }
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+
+  background-image: url("https://iili.io/fmqmLuI.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+    body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+}
+
 
     /* Mây trang trí */
     .cloud {
